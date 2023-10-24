@@ -1,0 +1,124 @@
+.container-content{
+    display: flex;
+    width: 100%;
+    height: 150vh;
+    background-color: black;
+}
+
+.container-data{
+    width: 33%;
+    height: 10vh;
+}
+
+.container-abobora{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container-abobora h2{
+    color: white;
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+
+
+.container-calendar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+    margin-bottom: 2em;
+}
+
+.calendario{
+    border-radius: 1em;
+    text-align: center;
+    padding: .5em;
+}
+
+.container-pessoa{
+    width: 34%;
+    height: 10vh;
+}
+
+.container-quantidadePessoas{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.container-card{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 3%;
+    align-items: center;
+}
+
+.container-card span{
+    color: white;
+    padding: 1em;
+    cursor: pointer;
+    display: flex;
+}
+.container-card p{
+    color: white;
+    padding: .2em;
+    width: 7em;
+}
+.container-card h3{
+    color: white;
+    width: 7em;
+}
+
+.container-card input {
+    width: 2em;
+    height: 2em;
+}
+
+.container-dadosPessoais{
+    width: 33%;
+    height: 10vh;
+}
+
+.container-quantidade{
+    display: flex;
+    align-items: center;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+}
+
+@media (max-width: 1000px) {
+    .container-content{
+        width: 100%;
+        flex-direction: column;
+    }
+    .container-dadosPessoais{
+        width: 100% !important;
+        margin-top: 5em;
+        align-items: center;
+    }
+    .container-pessoa{
+        width: 100% !important;
+        margin-top: 5em;
+    }
+    .container-data{
+        width: 100% !important;
+        margin-top: 5em;
+    }
+    .container-card{
+        width: 50%;
+    }
+}
