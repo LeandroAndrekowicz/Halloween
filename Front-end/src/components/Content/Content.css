@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&family=Metal+Mania&display=swap');
+
+
 .container-content{
     display: flex;
     width: 100%;
-    height: 150vh;
+    height: 200vh;
     background-color: black;
 }
 
@@ -22,6 +25,7 @@
     text-align: center;
     align-items: center;
     display: flex;
+    margin-left: .2em;
 }
 
 
@@ -41,7 +45,7 @@
 
 .container-pessoa{
     width: 34%;
-    height: 10vh;
+    height: auto;
 }
 
 .container-quantidadePessoas{
@@ -50,6 +54,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 3em;
+    height: auto;
 }
 
 .container-card{
@@ -58,13 +63,17 @@
     justify-content: space-between;
     padding: 3%;
     align-items: center;
+    height: auto;
 }
 
-.container-card span{
+.container-card button{
     color: white;
     padding: 1em;
     cursor: pointer;
     display: flex;
+    color: white;
+    background-color: black;
+    border-style: none;
 }
 .container-card p{
     color: white;
@@ -86,6 +95,34 @@
     height: 10vh;
 }
 
+.dadosPessoais{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.dadosPessoais input{
+    width: 70%;
+    display: flex;
+    padding: .5em;
+    border-radius: 1em;
+}
+
+.valor{
+    text-align: center;
+    padding: 1em;
+    width: 35%;
+}
+
+.valor p{
+    color: white;
+    font-family: Metal Mania;
+    font-size: 2em;
+}
+
 .container-quantidade{
     display: flex;
     align-items: center;
@@ -93,22 +130,21 @@
 
 input[type=number]::-webkit-inner-spin-button { 
     -webkit-appearance: none;
-    
 }
 input[type=number] { 
    -moz-appearance: textfield;
    appearance: textfield;
+   text-align: center;
 }
 
 @media (max-width: 1000px) {
     .container-content{
         width: 100%;
-        flex-direction: column;
+        flex-direction: column !important;
     }
     .container-dadosPessoais{
         width: 100% !important;
         margin-top: 5em;
-        align-items: center;
     }
     .container-pessoa{
         width: 100% !important;
