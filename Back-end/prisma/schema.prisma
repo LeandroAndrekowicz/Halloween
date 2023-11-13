@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ingresso {
+  id        String      @id @default(uuid())
+  cpf       String      @unique
+  nome      String 
+  valor     Float
+  data      String
+  createdAt DateTime    @default(now())
+  ingressoPreenchido ingressoPreenchido[]
+}
+
+model ingressoPreenchido {
+  id        String      @id @default(uuid())
+  cpf       String      @unique
+  nome      String
+  dataNascimento String
+  createdAt DateTime
+  ingressoId String
+  ingresso    ingresso  @relation(fields: [ingressoId], references: [id])
+}
