@@ -2,17 +2,22 @@ import React, { useEffect, useState } from 'react';
 import './Content.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import axios from 'axios';
+import Header from '../Header';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Counter = ({ label, count, setCount, handleIncrement, handleDecrement, handleInputChange }) => (
-  <div className="container-card">
+  <div className="container-cards">
         <div>
             <h3>{label}</h3>
             <p>{label === 'Crianças' ? '11 A 16 ANOS' : label === 'Adulto' ? '16 A 60 ANOS' : label === 'Senior' ? 'ACIMA DE 60 ANOS' : 'SAIBA MAIS'}</p>
         </div>
         <div className="container-quantidade">
-            <button onClick={handleIncrement}>+</button>
-            <input type="number" min={0} value={count} onChange={handleInputChange} />
             <button onClick={handleDecrement}>-</button>
+            <input type="number" min={0} value={count} onChange={handleInputChange} />
+            <button onClick={handleIncrement}>+</button>
         </div>
     </div>
 );
@@ -29,7 +34,49 @@ const Content = () => {
   const [subtotalIdosos, setSubtotalIdosos] = useState(0);
   const [subtotalPcd, setSubtotalPcd] = useState(0);
 
-  const [dadosPessoais, setDadosPessoais] = useState({});
+  const [cpf, setCpf] = useState('');
+  const [nome, setNome] = useState('');
+
+//cpf, nome, valor, data, quantidade
+  const saveData = async () =>{
+    try {
+        const converteData = new Date(selected).toISOString().split('T')[0];
+
+        const quantidade = criancas + adultos + idosos + pcd
+
+        if(cpf !== '' && nome !== '' && totalGeral !== 0 && selected !== null && quantidade !== 0){
+            const response = await axios.post(`http://localhost:3000/create/ingresso`, {cpf: cpf, nome: nome, valor: totalGeral, data: converteData, quantidade: quantidade});
+
+            toast.success('Ingresso adquirido com sucesso!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        }
+
+        else{
+            toast.error('Preencha todos os campos!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        }
+
+        return
+    } catch (error) {
+        
+    }
+  }
 
   const precoCriancas = 35;
   const precoAdultos = 50; 
@@ -47,10 +94,17 @@ const Content = () => {
 
   const totalGeral = subtotalCriancas + subtotalAdultos + subtotalIdosos + subtotalPcd;
 
-
   useEffect(() =>{
     atualizarSubtotais();
   })
+
+  const handleNomeChange = (event) => {
+    setNome(event.target.value);
+  };
+
+  const handleCPFChange = (event) => {
+    setCpf(event.target.value);
+  };
 
 
   const handleIncrement = (setFunction) => () => {
@@ -67,74 +121,91 @@ const Content = () => {
   };
 
   return (
-    <div className="container-content">
-        <div className="container-data">
-            <div className="container-abobora">
-                <img src="./abobora.png" alt="Abóbora" />
-                <h2>Escolha a data</h2>
-            </div>
-            <div className="container-calendar">
-                <DatePicker selected={selected} onChange={(date) => setSelected(date)} dateFormat="dd/MM/yyyy" minDate={startDate} className="calendario" />
-            </div>
-        </div>
-        <div className="container-pessoa">
-            <div className="container-abobora">
-                <img src="./pessoa.png" alt="Pessoa" />
-                <h2>Quantas pessoas?</h2>
-            </div>
-            <div className="container-quantidadePessoas">
-                <Counter
-                    label="Crianças"
-                    count={criancas}
-                    setCount={setCriancas}
-                    handleIncrement={handleIncrement(setCriancas)}
-                    handleDecrement={handleDecrement(setCriancas)}
-                    handleInputChange={handleInputChange(setCriancas)}
-                />
-                <Counter
-                    label="Adulto"
-                    count={adultos}
-                    setCount={setAdultos}
-                    handleIncrement={handleIncrement(setAdultos)}
-                    handleDecrement={handleDecrement(setAdultos)}
-                    handleInputChange={handleInputChange(setAdultos)}
-                />
-                <Counter
-                    label="Senior"
-                    count={idosos}
-                    setCount={setIdosos}
-                    handleIncrement={handleIncrement(setIdosos)}
-                    handleDecrement={handleDecrement(setIdosos)}
-                    handleInputChange={handleInputChange(setIdosos)}
-                />
-                <Counter
-                    label="Pessoa com Deficiência"
-                    count={pcd}
-                    setCount={setPcd}
-                    handleIncrement={handleIncrement(setPcd)}
-                    handleDecrement={handleDecrement(setPcd)}
-                    handleInputChange={handleInputChange(setPcd)}
-                />
-            </div>
-        </div>
-        <div className="container-dadosPessoais">
-            <div className='container-abobora'>
-                <img src="./dadosPessoais.png" alt="Dados pessoais" />
-                <h2>Dados Pessoais</h2>
-            </div>
-            <div className='dadosPessoais'>
-                <label>Nome</label>
-                <input type="text" placeholder="Nome" />
-                <label>CPF</label>
-                <input type="text" placeholder="CPF" />
-
-                <div className='valor'>
-                    <p>R$ {totalGeral}</p>
+    <>
+        <Header />
+        <div className="container-content">
+            <div className="container-data">
+                <div className="container-abobora">
+                    <img src="./abobora.png" alt="Abóbora" />
+                    <h2>Escolha a data</h2>
+                </div>
+                <div className="container-calendar">
+                    <DatePicker selected={selected} onChange={(date) => setSelected(date)} dateFormat="dd/MM/yyyy" minDate={startDate} className="calendario" />
                 </div>
             </div>
+            <div className="container-pessoa">
+                <div className="container-abobora">
+                    <img src="./pessoa.png" alt="Pessoa" />
+                    <h2>Quantas pessoas?</h2>
+                </div>
+                <div className="container-quantidadePessoas">
+                    <Counter
+                        label="Crianças"
+                        count={criancas}
+                        setCount={setCriancas}
+                        handleIncrement={handleIncrement(setCriancas)}
+                        handleDecrement={handleDecrement(setCriancas)}
+                        handleInputChange={handleInputChange(setCriancas)}
+                    />
+                    <Counter
+                        label="Adulto"
+                        count={adultos}
+                        setCount={setAdultos}
+                        handleIncrement={handleIncrement(setAdultos)}
+                        handleDecrement={handleDecrement(setAdultos)}
+                        handleInputChange={handleInputChange(setAdultos)}
+                    />
+                    <Counter
+                        label="Senior"
+                        count={idosos}
+                        setCount={setIdosos}
+                        handleIncrement={handleIncrement(setIdosos)}
+                        handleDecrement={handleDecrement(setIdosos)}
+                        handleInputChange={handleInputChange(setIdosos)}
+                    />
+                    <Counter
+                        label="Pessoa com Deficiência"
+                        count={pcd}
+                        setCount={setPcd}
+                        handleIncrement={handleIncrement(setPcd)}
+                        handleDecrement={handleDecrement(setPcd)}
+                        handleInputChange={handleInputChange(setPcd)}
+                    />
+                </div>
+            </div>
+            <div className="container-dadosPessoais">
+                <div className='container-abobora'>
+                    <img src="./dadosPessoais.png" alt="Dados pessoais" />
+                    <h2>Dados Pessoais</h2>
+                </div>
+                <div className='dadosPessoais'>
+                    <label>Nome</label>
+                    <input type="text" placeholder="Nome" value={nome} onChange={handleNomeChange} />
+                    <label>CPF</label>
+                    <input type="text" placeholder="CPF" value={cpf} onChange={handleCPFChange} />
 
+                    <div className='valor'>
+                        <p>R$ {totalGeral}</p>
+                    </div>
+                    <div className='botao'>
+                        <button onClick={saveData}>Finalizar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+    </>
   );
 };
 

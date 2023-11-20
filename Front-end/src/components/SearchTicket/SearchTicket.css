@@ -1,0 +1,120 @@
+.container-ticket{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    flex-direction: column;
+    color: white;
+    padding-top: 3em;
+}
+
+.container-titulo{
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin-top: 1.5em;
+}
+
+.container-input{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5em;
+    flex-direction: column;
+}
+
+.container-input input{
+    padding: .5em;
+    width: 60%;
+    border-radius: .5em;
+}
+
+.container-input button{
+    width: 50%;
+    margin-top: 1.5em;
+    background: rgb(0,0,0);
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9943627109046743) 35%, rgba(65,6,34,1) 100%);
+    padding: .5em;
+    border-radius: .5em;
+    color: white;
+}
+
+.cards{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card */
+
+.container-card{
+    background: rgb(164,0,255);
+    background: linear-gradient(0deg, rgb(8, 8, 8) 0%, rgb(15, 15, 15) 10%, rgb(5, 5, 5) 44%, rgba(0,0,0,1) 89%);
+    color: white;
+    padding: 1rem;
+    height: auto;
+    width: 60%;
+    margin-top: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendario{
+    width: 100%;
+}
+
+.clear{
+    display: none;
+}
+
+.container-card input{
+    width: 70%;
+    display: flex;
+    padding: .2em;
+    border-radius: .5em;
+    margin-bottom: .5em;
+}
+
+.container-card h3{
+    margin-top: 1em;
+}
+
+.container-informaçoes{
+    width: 100%;
+}
+
+
+.informaçoes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+}
+
+.container-informaçoes button{
+    width: 50%;
+    margin-top: 1.5em;
+    background: rgb(0,0,0);
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9943627109046743) 35%, rgba(65,6,34,1) 100%);
+    padding: .5em;
+    border-radius: .5em;
+    color: white;
+    justify-content: center;
+}
+
+
+@media (min-width: 750px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  @media (min-width: 1100px) {
+    .cards { grid-template-columns: repeat(3, 1fr); }
+  }
