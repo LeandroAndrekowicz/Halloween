@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../Header'
 import { Carousel } from 'react-responsive-carousel';
+import useSound from 'use-sound'
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import './Home.css'
 
 const index = () => {
+    const [playSound] = useSound('./Music.mp4');
+
+    useEffect(() =>{
+        playSound();
+    })
+
+
   return (
     <>
         <Header />

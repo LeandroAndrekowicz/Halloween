@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'; 
 import './SearchTicket.css'
 import Header from '../Header';
 import Ticket from './Ticket';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useSound from 'use-sound'
 
 const SearchTicket = () => {
   const [cpf, setCpf] = useState(''); 
   const [haveTicket, setHaveTicket] = useState(false);
   const [data, setData] = useState();
+  const [playSound] = useSound('./Music.mp4');
+
+  useEffect(() =>{
+      playSound();
+  })
 
 
   const buscaIngressos = async () => {

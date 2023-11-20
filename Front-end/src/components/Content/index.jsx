@@ -6,6 +6,7 @@ import axios from 'axios';
 import Header from '../Header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useSound from 'use-sound';
 
 
 const Counter = ({ label, count, setCount, handleIncrement, handleDecrement, handleInputChange }) => (
@@ -36,6 +37,11 @@ const Content = () => {
 
   const [cpf, setCpf] = useState('');
   const [nome, setNome] = useState('');
+  const [playSound] = useSound('./Music.mp4');
+
+  useEffect(() =>{
+      playSound();
+  })
 
 //cpf, nome, valor, data, quantidade
   const saveData = async () =>{

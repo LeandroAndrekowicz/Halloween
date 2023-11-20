@@ -20,5 +20,7 @@
 
 *::-webkit-scrollbar-thumb {
   background-image: url('./icone.png');
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat; 
+  background-position: center;
 }

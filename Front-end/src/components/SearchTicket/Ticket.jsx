@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { timer } from 'rxjs';
+import useSound from 'use-sound';
 
 
 
@@ -17,6 +18,9 @@ const Ticket = ({data}) => {
   const [nome, setNome] = useState('');
   const [ingressoId, setIngressoId] = useState('');
   const [quantiadeIngressos, setQuantiadeIngressos] = useState(0);
+  const [playSound] = useSound('./Music.mp4');
+
+
 
   const handleCpfChange = (e) => {
     setCpf(e.target.value);
@@ -35,6 +39,7 @@ const Ticket = ({data}) => {
 
   useEffect(() =>{
     dataMap();
+    playSound();
   })
   
   const preencheTicket = async () => {

@@ -52,14 +52,12 @@
 
 .grid img{
     width: 45%;
-    padding: 1em;
 }
 
 .subgrid{
     width: 100%;
     flex-direction: column;
     display: flex;
-    padding: .5em;
     align-items: center;
 }
 
@@ -84,5 +82,10 @@
     }
     .grid img{
         width: 80%;
+    }
+
+    .subgrid h2{
+        border-bottom: none;
+        padding: 1em;
     }
 }
