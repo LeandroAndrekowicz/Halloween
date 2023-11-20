@@ -2,9 +2,9 @@ import ingressoService from '../services/ingresso.service.js';
 
 const create = async (req, res) =>{
     try {
-        const { cpf, nome, valor, data } = req.body;
+        const { cpf, nome, valor, data, quantidade } = req.body;
 
-        if(!cpf || !nome || !valor || !data){
+        if(!cpf || !nome || !valor || !data || !quantidade){
             return res.status(400).json({message: 'Preencha todos os campos'});
         }
     
@@ -52,7 +52,32 @@ const findAll = async (req, res) => {
     }
 }
 
+const preencheIngresso = async (req, res) => {
+    try {
+        const { cpf, nome, dataNascimento, ingressoId } = req.body;
+
+        if(!dataNascimento || !nome || !ingressoId || !cpf){
+            return res.status(400).json({message: 'Preencha todos os campos'});
+        }
+
+        const ingressoPreenchido = await ingressoService.preencheIngresso(req.body);
+
+        if(!ingressoPreenchido){
+            return res.status(400).json({message: 'Ingresso não criado'});
+        }
+
+        return res.status(201).send({
+            message: 'Ingresso preenchido com sucesso',
+            ingresso: ingressoPreenchido,
+        });
+
+    } catch (error) {
+        return res.status(500).send({ message: error.message });
+    }
+}
+
 export default {
     create,
     findAll,
+    preencheIngresso,
 }

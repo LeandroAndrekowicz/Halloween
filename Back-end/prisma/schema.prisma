@@ -12,20 +12,22 @@ datasource db {
 
 model ingresso {
   id        String      @id @default(uuid())
-  cpf       String      @unique
+  cpf       String      
   nome      String 
   valor     Float
   data      String
+  quantidade Int? @default(0)
   createdAt DateTime    @default(now())
   ingressoPreenchido ingressoPreenchido[]
 }
 
 model ingressoPreenchido {
   id        String      @id @default(uuid())
-  cpf       String      @unique
+  cpf       String      
   nome      String
-  dataNascimento String
-  createdAt DateTime
+  quantidade Int @default(1)
+  dataNascimento String?
+  createdAt DateTime @default(now())
   ingressoId String
   ingresso    ingresso  @relation(fields: [ingressoId], references: [id])
 }

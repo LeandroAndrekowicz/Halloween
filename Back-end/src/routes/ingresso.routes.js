@@ -7,4 +7,6 @@ router.post('/create/ingresso', ingressoController.create);
 
 router.get('/findAll/ingresso/:cpf', ingressoController.findAll);
 
+router.post('/create/ingressoPreenchido', ingressoController.preencheIngresso);
+
 export default router;
