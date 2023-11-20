@@ -22,7 +22,7 @@ const index = () => {
             <div className='container-carousel'>
                 <Carousel showArrows={false} showStatus={false} showThumbs = {false} autoPlay={true} transitionTime={3000} interval={5000} infiniteLoop={true} className='carousel'>
                     <div>
-                        <img src="./carousel1.jpg" />
+                        <img src="./carousel1.jpg"/>
                     </div>
                     <div>
                         <img src="./carousel2.jpg" />
@@ -59,6 +59,10 @@ const index = () => {
                         <div className='subgrid'>
                             <h2>Agony Show</h2>
                             <img src="./atracao5.jpg" alt="Circo" />
+                        </div>
+                        <div className='subgrid'>
+                            <h2>Dark Carousel</h2>
+                            <img src="./atracao6.jpg" alt="Circo" />
                         </div>
                     </div>
                 </div>
