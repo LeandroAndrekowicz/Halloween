@@ -10,7 +10,7 @@ const createIngresso = async (body) =>{
                 nome: body.nome,
                 data: body.data,
                 valor: body.valor,
-                quantidade: body.quantidade
+                quantidade: body.quantidade,
             }
         });
 
@@ -30,6 +30,7 @@ const preencheIngresso = async (body) => {
                 cpf: body.cpf,
                 nome: body.nome,
                 dataNascimento: body.dataNascimento,
+                preenchido: body.preenchido
             }
         });
 
@@ -39,8 +40,36 @@ const preencheIngresso = async (body) => {
     }
 }
 
+const editaIngressoPreenchidoService = async (body) => {
+    try {
+        const editaIngressoPreenchido = await prisma.ingressoPreenchido.update(({
+            where: {
+                ingressoId: body.id
+            }, 
+            data: {
+                nome: body.nome, 
+                cpf: body.cpf, 
+                dataNascimento: 
+                body.dataNascimento
+            }
+        }))
+
+        return editaIngressoPreenchido;
+
+    } catch (error) {
+        return { message: error.message }
+    }
+}
+
+const getIngressoPreenchido = async (id) => prisma.ingressoPreenchido.findMany({ where: {ingressoId: id}})
+
+const editaStatusIngresso = async(status, id) => prisma.ingresso.update({ where: { id: id }, data: {complete: status}});
+
 export default {
     findAllIngressosById,
     createIngresso,
     preencheIngresso,
+    editaIngressoPreenchidoService, 
+    getIngressoPreenchido,
+    editaStatusIngresso,
 }
