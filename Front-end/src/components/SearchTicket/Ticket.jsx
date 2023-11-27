@@ -47,9 +47,28 @@ const Ticket = ({data}) => {
       if(cpf !== '' && nome !== '' && selected !== null) {
         const dataNascimento = new Date(selected).toISOString().split('T')[0];
 
-        const response = await axios.post(`http://localhost:3000/create/ingressoPreenchido`, {ingressoId: ingressoId, cpf: cpf, nome: nome, dataNascimento: dataNascimento});
+        const response = await axios.post(`http://localhost:3000/create/ingressoPreenchido`, {ingressoId: ingressoId, cpf: cpf, nome: nome, dataNascimento: dataNascimento, preenchido: true});
+
+        if(cont < quantiadeIngressos){
+          
+        toast.success('Ingresso preenchido com sucesso', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+        }
+
 
         if(cont === quantiadeIngressos){
+
+          const editStatus = await axios.patch(`http://localhost:3000/edita/status/${ingressoId}`, {status: true});
+
+
           toast.success('Todos ingressos preenchidos', {
             position: "top-right",
             autoClose: 5000,
@@ -104,6 +123,7 @@ const Ticket = ({data}) => {
                 selected={selected}
                 onChange={(date) => setSelected(date)}
                 dateFormat="dd/MM/yyyy"
+                maxDate={new Date()}
                 className="calendario"
                 id='calendario' />
             <button className='ghst-btn' onClick={preencheTicket}>Salvar</button>

@@ -6,6 +6,7 @@
     flex-direction: column;
     color: white;
     padding-top: 3em;
+    padding-bottom: 15em;
 }
 
 .container-titulo{
@@ -13,6 +14,7 @@
     text-align: center;
     width: 100%;
     margin-top: 1.5em;
+    margin-bottom: 1.5em;
 }
 
 .container-input{
@@ -99,6 +101,77 @@
     width: 100%;
 }
 
+.container-cardPreenchido{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-cardsPreenchido{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardPreenchido{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.informaçao{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(0deg, rgb(8, 8, 8) 0%, rgb(15, 15, 15) 10%, rgb(5, 5, 5) 44%, rgba(0,0,0,1) 89%);
+    color: white;
+    margin: 1em;
+}
+
+.card input{
+    margin: 1.5em;
+    width: 70%;
+    padding: .5em;
+    border-radius: .5em;
+}
+
+.calendarioPreenchido{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.container-cards{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-loading{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .container-informaçoes button{
     width: 50%;
     margin-top: 1.5em;
@@ -113,8 +186,11 @@
 
 @media (min-width: 750px) {
     .cards { grid-template-columns: repeat(2, 1fr); }
+    .container-ticket{
+        height: 100vh !important;
+    }
   }
   
-  @media (min-width: 1100px) {
+@media (min-width: 1100px) {
     .cards { grid-template-columns: repeat(3, 1fr); }
-  }
+}

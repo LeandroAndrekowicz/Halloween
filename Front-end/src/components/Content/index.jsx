@@ -7,6 +7,7 @@ import Header from '../Header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useSound from 'use-sound';
+import { timer } from 'rxjs';
 
 
 const Counter = ({ label, count, setCount, handleIncrement, handleDecrement, handleInputChange }) => (
@@ -43,26 +44,35 @@ const Content = () => {
       playSound();
   })
 
-//cpf, nome, valor, data, quantidade
   const saveData = async () =>{
     try {
+      console.log(selected);
+
         const converteData = new Date(selected).toISOString().split('T')[0];
 
+        console.log(converteData);
         const quantidade = criancas + adultos + idosos + pcd
+        
+        const complete = false
 
         if(cpf !== '' && nome !== '' && totalGeral !== 0 && selected !== null && quantidade !== 0){
-            const response = await axios.post(`http://localhost:3000/create/ingresso`, {cpf: cpf, nome: nome, valor: totalGeral, data: converteData, quantidade: quantidade});
+          const response = await axios.post(`http://localhost:3000/create/ingresso`, {cpf: cpf, nome: nome, valor: totalGeral, data: converteData, quantidade: quantidade});
 
-            toast.success('Ingresso adquirido com sucesso!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
+          toast.success('Ingresso adquirido com sucesso!', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+
+                
+          timer(3000).subscribe(() =>{
+            window.location.assign('/ticket')
+          })
         }
 
         else{
