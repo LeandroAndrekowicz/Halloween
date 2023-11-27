@@ -17,6 +17,7 @@ model ingresso {
   valor     Float
   data      String
   quantidade Int? @default(0)
+  complete Boolean? @default(false)
   createdAt DateTime    @default(now())
   ingressoPreenchido ingressoPreenchido[]
 }
@@ -27,6 +28,7 @@ model ingressoPreenchido {
   nome      String
   quantidade Int @default(1)
   dataNascimento String?
+  preenchido Boolean @default(false)
   createdAt DateTime @default(now())
   ingressoId String
   ingresso    ingresso  @relation(fields: [ingressoId], references: [id])
