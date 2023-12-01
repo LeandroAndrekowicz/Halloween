@@ -42,18 +42,17 @@ const preencheIngresso = async (body) => {
 
 const editaIngressoPreenchidoService = async (body) => {
     try {
-        const editaIngressoPreenchido = await prisma.ingressoPreenchido.update(({
+        const editaIngressoPreenchido = await prisma.ingressoPreenchido.update({
             where: {
-                ingressoId: body.id
+                id: body.idIngresso
             }, 
             data: {
                 nome: body.nome, 
                 cpf: body.cpf, 
-                dataNascimento: 
-                body.dataNascimento
+                dataNascimento: body.dataNascimento
             }
-        }))
-
+        });
+        
         return editaIngressoPreenchido;
 
     } catch (error) {

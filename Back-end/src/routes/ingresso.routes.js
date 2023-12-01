@@ -9,7 +9,7 @@ router.get('/findAll/ingresso/:cpf', ingressoController.findAll);
 
 router.post('/create/ingressoPreenchido', ingressoController.preencheIngresso);
 
-router.patch('/edit/ingresso', ingressoController.editaIngressoPreenchido);
+router.patch('/edit/ingresso/', ingressoController.editaIngressoPreenchido);
 
 router.get('/findAll/ingressoPreenchido/:id', ingressoController.buscaIngressoPreenchido);
 

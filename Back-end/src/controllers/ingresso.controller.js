@@ -78,9 +78,9 @@ const preencheIngresso = async (req, res) => {
 
 const editaIngressoPreenchido = async (req, res) => {
     try {
-        const {cpf, nome, dataNascimento, idIngresso, preenchido} = req.body;
+        const {cpf, nome, dataNascimento, idIngresso} = req.body;
 
-        if(!cpf || !nome || !dataNascimento || !idIngresso || !preenchido) {
+        if(!cpf || !nome || !dataNascimento || !idIngresso) {
             return res.status(400).json({message: 'Preencha todos os campos'});
         }
 
