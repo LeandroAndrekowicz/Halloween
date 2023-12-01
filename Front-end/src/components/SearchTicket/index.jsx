@@ -7,7 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useSound from 'use-sound'
 import EditTicket from './EditTicket';
-import { async, timer } from 'rxjs';
+import { timer } from 'rxjs';
+import { mask } from '../Mascaras/CpfValidator';
+
 
 const SearchTicket = () => {
   const [cpf, setCpf] = useState(''); 
@@ -98,7 +100,7 @@ const SearchTicket = () => {
                     type="text"
                     placeholder="cpf"
                     value={cpf} 
-                    onChange={(e) => setCpf(e.target.value)}
+                    onChange={(e) => setCpf(mask(e.target.value))}
                 />
                 <button onClick={buscaIngressos}>Buscar</button>
             </div>

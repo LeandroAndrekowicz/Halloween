@@ -8,10 +8,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useSound from 'use-sound';
 import { timer } from 'rxjs';
+import { mask } from '../Mascaras/CpfValidator';
 
 
 const Counter = ({ label, count, setCount, handleIncrement, handleDecrement, handleInputChange }) => (
-  <div className="container-cards">
+  <div className="container-cardss">
         <div>
             <h3>{label}</h3>
             <p>{label === 'Crianças' ? '11 A 16 ANOS' : label === 'Adulto' ? '16 A 60 ANOS' : label === 'Senior' ? 'ACIMA DE 60 ANOS' : 'SAIBA MAIS'}</p>
@@ -46,13 +47,8 @@ const Content = () => {
 
   const saveData = async () =>{
     try {
-      console.log(selected);
-
         const converteData = new Date(selected).toISOString().split('T')[0];
-
-        console.log(converteData);
         const quantidade = criancas + adultos + idosos + pcd
-        
         const complete = false
 
         if(cpf !== '' && nome !== '' && totalGeral !== 0 && selected !== null && quantidade !== 0){
@@ -119,7 +115,7 @@ const Content = () => {
   };
 
   const handleCPFChange = (event) => {
-    setCpf(event.target.value);
+    setCpf(mask(event.target.value));
   };
 
 
@@ -142,7 +138,7 @@ const Content = () => {
         <div className="container-content">
             <div className="container-data">
                 <div className="container-abobora">
-                    <img src="./abobora.png" alt="Abóbora" />
+                    <img src="./calendario.png" alt="Calendario" />
                     <h2>Escolha a data</h2>
                 </div>
                 <div className="container-calendar">

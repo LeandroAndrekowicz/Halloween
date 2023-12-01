@@ -49,8 +49,12 @@ const Ticket = ({data}) => {
 
         const response = await axios.post(`http://localhost:3000/create/ingressoPreenchido`, {ingressoId: ingressoId, cpf: cpf, nome: nome, dataNascimento: dataNascimento, preenchido: true});
 
+
         if(cont < quantiadeIngressos){
-          
+          setCpf('');
+          setNome('');
+          setSelected(null)
+
         toast.success('Ingresso preenchido com sucesso', {
           position: "top-right",
           autoClose: 5000,

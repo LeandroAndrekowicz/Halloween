@@ -4,6 +4,7 @@ import SearchTicket from "./components/SearchTicket";
 import Home from './components/Home'
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" index element={<Home />} />
           <Route path="/ticket" element={<SearchTicket />} />
           <Route path='/buyTicket' element={<Content />} />
+          <Route path='*' element={<NotFound />} />
           <Route render={() => <h1>404: page not found</h1>} />
         </Routes>
     </Router>
