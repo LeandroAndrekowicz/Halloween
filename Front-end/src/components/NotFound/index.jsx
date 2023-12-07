@@ -12,7 +12,7 @@ function NotFound () {
     return(
         <div className='container-404'>
             <div className='container-jack-sm'>
-                <img src="./jack.png" alt="teste" className='pulse'/>
+                <img src="./jack.gif" alt="teste" className='pulse'/>
             </div>
             <div className='container-perdido'>
                 <h2>Parece que voce se perdeu!</h2>
@@ -20,7 +20,7 @@ function NotFound () {
                 <button onClick={rederenciona}>clique aqui</button>
             </div>
             <div className='container-jack'>
-                <img src="./jack.png" alt="teste" className='pulse'/>
+                <img src="./jack.gif" alt="teste" className='pulse'/>
             </div>
         </div>
     )

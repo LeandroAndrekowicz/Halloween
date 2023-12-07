@@ -64,29 +64,28 @@
 
 
 .pulse {
-    animation: pulse 0.7s infinite;
-    margin: 0 auto;
-    display: table;
-    animation-direction: alternate;
-    -webkit-animation-name: pulse;
-    animation-name: pulse;
+  -webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s alternate ;
+  animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s alternate ;
   }
   
-  @-webkit-keyframes pulse {
+  @-webkit-keyframes slide-bottom {
     0% {
-      -webkit-transform: scale(1);
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
     }
     100% {
-      -webkit-transform: scale(0.1);
+      -webkit-transform: translateY(100px);
+              transform: translateY(100px);
     }
   }
-  
-  @keyframes pulse {
+  @keyframes slide-bottom {
     0% {
-      transform: scale(1.5);
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
     }
     100% {
-      transform: scale(1.7);
+      -webkit-transform: translateY(100px);
+              transform: translateY(100px);
     }
   }
 
@@ -105,27 +104,12 @@
         width: 100%;
         display: flex;
         margin-bottom: 10%;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 15%;
     }
     .container-perdido h2{
         font-size: 25px;
     }
-    
-    @-webkit-keyframes pulse {
-        0% {
-          -webkit-transform: scale(1);
-        }
-        100% {
-          -webkit-transform: scale(0.5);
-        }
-      }
-      
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        100% {
-          transform: scale(0.9);
-        }
-      }
 
 }

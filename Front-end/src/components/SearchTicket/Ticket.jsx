@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { timer } from 'rxjs';
 import useSound from 'use-sound';
+import { mask } from '../Mascaras/CpfValidator'
 
 
 
@@ -23,7 +24,7 @@ const Ticket = ({data}) => {
 
 
   const handleCpfChange = (e) => {
-    setCpf(e.target.value);
+    setCpf(mask(e.target.value));
   };
 
   const handleNomeChange = (e) => {
